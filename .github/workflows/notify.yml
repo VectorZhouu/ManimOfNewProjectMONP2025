@@ -1,3 +1,13 @@
-- name: notify server
-  run: |
-    curl "https://sctapi.ftqq.com/${{ secrets.SCKEY }}.send?title=hi&desp=done"
+name: notify
+
+on:
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: send message
+        run: |
+          curl "https://sctapi.ftqq.com/${{ secrets.SCKEY }}.send?title=hi&desp=done"
