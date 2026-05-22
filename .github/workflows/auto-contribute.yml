@@ -2,7 +2,7 @@ name: Daily Auto Commit
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-于:
+on:
   schedule:
     - cron: '0 12 * * *'  # 每天 UTC 12:00
   workflow_dispatch:
