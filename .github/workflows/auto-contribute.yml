@@ -1,28 +1,27 @@
-name: auto-contribute
+name: Daily Auto Commit
 
 on:
   schedule:
-    - cron: '0 16 * * *'   # UTC时间，对应中国凌晨0点
+    - cron: '0 12 * * *'  # 每天 UTC 12:00
   workflow_dispatch:
 
 jobs:
-  commit:
+  auto-commit:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
+    
     steps:
       - uses: actions/checkout@v4
-
-      - name: update
+      
+      - name: Configure Git
         run: |
-          echo "$(date)" >> log.txt
-
-      - name: commit
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Auto Commit
         run: |
-          git config --global user.name "VectorZhouu"
-          git config --global user.email "yuanzhou0000@outlook.com"
-          git add .
-          git commit -m "daily update" || exit 0
+          echo "Auto commit - $(date '+%Y-%m-%d %H:%M:%S')" >> activity.log
+          git add activity.log
+          git commit -m "chore: daily auto commit $(date '+%Y-%m-%d')"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
