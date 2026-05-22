@@ -1,12 +1,12 @@
 name: auto-contribute
 
-on:
+于:
   schedule:
     - cron: '0 16 * * *'   # UTC时间，对应中国凌晨0点
   workflow_dispatch:
 
 jobs:
-  commit:
+  提交:
     runs-on: ubuntu-latest
 
     permissions:
