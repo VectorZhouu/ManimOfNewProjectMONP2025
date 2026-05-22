@@ -1,3 +1,3 @@
-- name: notify
+name: notify
   run: |
     curl "https://sctapi.ftqq.com/${{ secrets.SCKEY }}.send?title=GitHub&desp=done"
