@@ -21,8 +21,8 @@ jobs:
 
       - name: commit
         run: |
-          git config --global user.name "你的GitHub名"
-          git config --global user.email "你的GitHub邮箱"
+          git config --global user.name "VectorZhouu"
+          git config --global user.email "yuanzhou0000@outlook.com"
           git add .
           git commit -m "daily update" || exit 0
           git push
