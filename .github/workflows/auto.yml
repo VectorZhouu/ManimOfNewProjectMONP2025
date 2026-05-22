@@ -1,0 +1,28 @@
+name: auto-contribute
+
+on:
+  schedule:
+    - cron: '0 16 * * *'   # UTC时间，对应中国凌晨0点
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: update
+        run: |
+          echo "$(date)" >> log.txt
+
+      - name: commit
+        run: |
+          git config --global user.name "你的GitHub名"
+          git config --global user.email "你的GitHub邮箱"
+          git add .
+          git commit -m "daily update" || exit 0
+          git push
